@@ -1,0 +1,36 @@
+.header-title {
+  text-align: center;
+}
+
+.item-wrapper {
+  padding: 16px;
+}
+
+.custom-item {
+  margin-bottom: 16px;      // Abstand zwischen Items
+  border-radius: 12px;      // Abgerundete Ecken
+  padding: 7px;            // Innenabstand
+  background: #f8f8f8;      // Optional: leichter Hintergrund
+  //--inner-padding-end: 0;   // Entfernt Standard-Rechtsabstand
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05); // Optional: leichter Schatten
+
+  ion-icon {
+    margin-right: 6px;
+    color: var(--ion-color-medium);
+    vertical-align: middle;
+  }
+
+  h2 {
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+
+  p {
+    margin: 4px 0;
+    font-size: 14px;
+  }
+
+  .info-content {
+    display: flex;
+  }
+}
