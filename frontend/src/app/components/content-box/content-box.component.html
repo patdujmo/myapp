@@ -1,0 +1,12 @@
+<ion-item (click)="navigate()" lines="none" class="custom-item">
+  <ion-label class="ion-text-wrap">
+    <h2><strong>{{ item.title }}</strong></h2>
+    <p>{{ item.title2 }}</p>
+    <p>{{ item.description }}</p>
+    <div class="info-content">
+      <p><ion-icon name="speedometer-outline"></ion-icon>{{ item.details }}</p>
+      <p><ion-icon name="calendar-outline"></ion-icon>{{ item.date }}</p>
+      <p><ion-icon name="location-outline"></ion-icon>{{ item.location }}</p>
+    </div>
+  </ion-label>
+</ion-item>

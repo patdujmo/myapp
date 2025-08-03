@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { MobileNavComponent } from './mobile-nav.component';
+import { HeaderLayoutComponent } from './header-layout.component';
 
-describe('MobileNavComponent', () => {
-  let component: MobileNavComponent;
-  let fixture: ComponentFixture<MobileNavComponent>;
+describe('HeaderLayoutComponent', () => {
+  let component: HeaderLayoutComponent;
+  let fixture: ComponentFixture<HeaderLayoutComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [MobileNavComponent],
+      imports: [HeaderLayoutComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(MobileNavComponent);
+    fixture = TestBed.createComponent(HeaderLayoutComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

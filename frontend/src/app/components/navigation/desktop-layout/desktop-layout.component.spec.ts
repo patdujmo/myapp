@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { DesktopNavComponent } from './desktop-nav.component';
+import { DesktopLayoutComponent } from './desktop-layout.component';
 
-describe('DesktopNavComponent', () => {
-  let component: DesktopNavComponent;
-  let fixture: ComponentFixture<DesktopNavComponent>;
+describe('DesktopLayoutComponent', () => {
+  let component: DesktopLayoutComponent;
+  let fixture: ComponentFixture<DesktopLayoutComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [DesktopNavComponent],
+      imports: [DesktopLayoutComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(DesktopNavComponent);
+    fixture = TestBed.createComponent(DesktopLayoutComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

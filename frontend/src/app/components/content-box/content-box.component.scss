@@ -1,0 +1,35 @@
+.header-title {
+  text-align: center;
+}
+
+.item-wrapper {
+  padding: 16px;
+}
+
+.custom-item {
+  margin-bottom: 16px;
+  border-radius: 12px;
+  padding: 7px;
+  background: #f8f8f8;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+
+  ion-icon {
+    margin-right: 6px;
+    color: var(--ion-color-medium);
+    vertical-align: middle;
+  }
+
+  h2 {
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+
+  p {
+    margin: 4px 0;
+    font-size: 14px;
+  }
+
+  .info-content {
+    display: flex;
+  }
+}

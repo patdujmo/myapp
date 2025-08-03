@@ -1,36 +1,6 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Home</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <div class="item-wrapper">
-    <ion-item lines="none" class="custom-item">
-      <ion-label class="ion-text-wrap">
-        <h2><strong>BMW 3er Touring</strong></h2>
-        <p>Diesel • Automatik • Klima</p>
-        <p>Ein besseres Auto gibt es nicht. Sehr gut in der Ausstattung und in einem Top Zustand!</p>
-        <div class="info-content">
-          <p><ion-icon name="speedometer-outline"></ion-icon> 124.000 km</p>
-          <p><ion-icon name="calendar-outline"></ion-icon> 05.07.2025</p>
-          <p><ion-icon name="location-outline"></ion-icon> München</p>
-        </div>
-      </ion-label>
-    </ion-item>
-
-    <ion-item lines="none" class="custom-item">
-      <ion-label class="ion-text-wrap">
-        <h2><strong>Audi A4 Avant</strong></h2>
-        <p>Benzin • Schaltgetriebe</p>
-        <p>Ein besseres Auto gibt es nicht. Sehr gut in der Ausstattung und in einem Top Zustand!</p>
-        <div class="info-content">
-          <p><ion-icon name="speedometer-outline"></ion-icon> 89.500 km</p>
-          <p><ion-icon name="calendar-outline"></ion-icon> 01.06.2024</p>
-          <p><ion-icon name="location-outline"></ion-icon> Hamburg</p>
-        </div>
-      </ion-label>
-    </ion-item>
+<app-header-layout></app-header-layout>
+<ion-content>
+  <div class="item-wrapper" *ngFor="let item of getData()">
+    <app-content-box [item]="item"></app-content-box>
   </div>
-  
 </ion-content>
