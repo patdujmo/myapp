@@ -27,7 +27,7 @@ export class HeaderService {
           this.store.dispatch(setHeader({
             showBackButton: false,
             showSaveButton: false,
-            showLogo: true
+            showLogo: true,
           }));
         }
       });

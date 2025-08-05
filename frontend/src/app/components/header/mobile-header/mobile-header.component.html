@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons *ngIf="(showBackButton$ | async)" slot="start">
-      <ion-back-button defaultHref="/tabs/home"></ion-back-button>
+      <ion-back-button [defaultHref]="(backButtonRoute$ | async)"></ion-back-button>
     </ion-buttons>
     <ion-title *ngIf="(showLogo$ | async)">
       <div class="logo-container">

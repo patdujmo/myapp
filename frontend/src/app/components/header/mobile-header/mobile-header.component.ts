@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { selectShowBackButton, selectShowLogo, selectShowSaveButton, selectTitle } from '../store/header.selectors';
+import { selectBackButtonRoute, selectShowBackButton, selectShowLogo, selectShowSaveButton, selectTitle } from '../store/header.selectors';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -21,7 +21,8 @@ export class MobileHeaderComponent  implements OnInit {
   showBackButton$!: Observable<boolean>;
   showSaveButton$!: Observable<boolean>;
   showLogo$!: Observable<boolean>;
-  title$!: Observable<String>;
+  title$!: Observable<string>;
+  backButtonRoute$!: Observable<string>;
 
   constructor(private store: Store) { }
 
@@ -30,6 +31,7 @@ export class MobileHeaderComponent  implements OnInit {
     this.showSaveButton$ = this.store.select(selectShowSaveButton);
     this.showLogo$ = this.store.select(selectShowLogo);
     this.title$ = this.store.select(selectTitle);
+    this.backButtonRoute$ = this.store.select(selectBackButtonRoute);
   }
   
   onSave() {

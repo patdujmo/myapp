@@ -6,6 +6,7 @@ export interface HeaderState {
   showSaveButton: boolean;
   showLogo: boolean;
   showTitle: string;
+  backButtonRoute: string;
 }
 
 export const initialState: HeaderState = {
@@ -13,6 +14,7 @@ export const initialState: HeaderState = {
   showSaveButton: false,
   showLogo: true,
   showTitle: '',
+  backButtonRoute: '',
 };
 
 export const headerReducer = createReducer(

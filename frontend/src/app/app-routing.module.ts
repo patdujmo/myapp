@@ -3,13 +3,22 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { TabsPageComponent } from './components/navigation/tabs-page/tabs-page.component';
 import { DesktopLayoutComponent } from './components/navigation/desktop-layout/desktop-layout.component';
 
+export const AppRoutes = {
+  tabs: 'tabs',
+  home: 'home',
+  homeBack: 'tabs/home',
+  homeDetails: 'home/details',
+  chat: 'chat',
+  profile: 'profile'
+};
+
 const routes: Routes = [
   {
-    path: 'tabs',
+    path: AppRoutes.tabs,
     component: TabsPageComponent,
     children: [
       {
-        path: 'home',
+        path: AppRoutes.home,
         loadComponent: () => import('./views/home/home.component').then(m => m.HomeComponent),
         data: {
           header: {
@@ -20,19 +29,20 @@ const routes: Routes = [
         }
       },
       {
-        path: 'home/details',
+        path: AppRoutes.homeDetails,
         loadComponent: () => import('./views/home/details/details.component').then(m => m.DetailsComponent),
         data: {
           header: {
             showBackButton: true,
             showSaveButton: false,
             showLogo: false,
-            showTitle: 'Details'
+            showTitle: 'Details',
+            backButtonRoute: AppRoutes.homeBack
           }
         }
       },
       {
-        path: 'chat',
+        path: AppRoutes.chat,
         loadComponent: () => import('./views/chat/chat.component').then(m => m.ChatComponent),
         data: {
           header: {
@@ -43,7 +53,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'profile',
+        path: AppRoutes.profile,
         loadComponent: () => import('./views/profile/profile.component').then(m => m.ProfileComponent),
         data: {
           header: {
@@ -55,7 +65,7 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: 'home',
+        redirectTo: AppRoutes.home,
         pathMatch: 'full'
       }
     ]
@@ -65,24 +75,24 @@ const routes: Routes = [
     component: DesktopLayoutComponent,
     children: [
       {
-        path: 'home',
+        path: AppRoutes.home,
         loadComponent: () => import('./views/home/home.component').then(m => m.HomeComponent),
       },
       {
-        path: 'home/details',
+        path: AppRoutes.homeDetails,
         loadComponent: () => import('./views/home/details/details.component').then(m => m.DetailsComponent)
       },
       {
-        path: 'chat',
+        path: AppRoutes.chat,
         loadComponent: () => import('./views/chat/chat.component').then(m => m.ChatComponent)
       },
       {
-        path: 'profile',
+        path: AppRoutes.profile,
         loadComponent: () => import('./views/profile/profile.component').then(m => m.ProfileComponent)
       },
       {
         path: '',
-        redirectTo: '/home',
+        redirectTo: AppRoutes.home,
         pathMatch: 'full'
       }
     ]

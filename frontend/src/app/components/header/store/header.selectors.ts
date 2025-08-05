@@ -22,3 +22,8 @@ export const selectTitle = createSelector(
   selectHeaderState,
   state => state.showTitle
 );
+
+export const selectBackButtonRoute = createSelector(
+  selectHeaderState,
+  state => state.backButtonRoute
+);
