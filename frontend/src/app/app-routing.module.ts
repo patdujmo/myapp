@@ -11,18 +11,47 @@ const routes: Routes = [
       {
         path: 'home',
         loadComponent: () => import('./views/home/home.component').then(m => m.HomeComponent),
+        data: {
+          header: {
+            showBackButton: false,
+            showSaveButton: false,
+            showLogo: true
+          }
+        }
       },
       {
         path: 'home/details',
-        loadComponent: () => import('./views/home/details/details.component').then(m => m.DetailsComponent)
+        loadComponent: () => import('./views/home/details/details.component').then(m => m.DetailsComponent),
+        data: {
+          header: {
+            showBackButton: true,
+            showSaveButton: false,
+            showLogo: false,
+            showTitle: 'Details'
+          }
+        }
       },
       {
         path: 'chat',
-        loadComponent: () => import('./views/chat/chat.component').then(m => m.ChatComponent)
+        loadComponent: () => import('./views/chat/chat.component').then(m => m.ChatComponent),
+        data: {
+          header: {
+            showBackButton: false,
+            showSaveButton: false,
+            showLogo: true
+          }
+        }
       },
       {
         path: 'profile',
-        loadComponent: () => import('./views/profile/profile.component').then(m => m.ProfileComponent)
+        loadComponent: () => import('./views/profile/profile.component').then(m => m.ProfileComponent),
+        data: {
+          header: {
+            showBackButton: false,
+            showSaveButton: false,
+            showLogo: true
+          }
+        }
       },
       {
         path: '',

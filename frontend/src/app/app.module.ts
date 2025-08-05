@@ -8,6 +8,7 @@ import { MobileHeaderComponent } from './components/header/mobile-header/mobile-
 import { DesktopHeaderComponent } from './components/header/desktop-header/desktop-header.component';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { headerReducer } from './components/header/store/header.reducers';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,7 +18,9 @@ import { EffectsModule } from '@ngrx/effects';
     AppRoutingModule,
     MobileHeaderComponent,
     DesktopHeaderComponent,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot({
+      header: headerReducer
+    }),
     EffectsModule.forRoot([])
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy}],

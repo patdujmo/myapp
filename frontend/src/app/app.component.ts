@@ -2,6 +2,7 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Platform } from '@ionic/angular';
+import { HeaderService } from './services/header.service';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,8 @@ export class AppComponent implements OnInit{
   constructor(
     private platform: Platform,
     private router: Router,
-    private location: Location
+    private location: Location,
+    private headerService: HeaderService
   ) {}
 
   ngOnInit() {

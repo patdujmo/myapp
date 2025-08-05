@@ -1,5 +1,18 @@
-<ion-toolbar>
-  <div class="logo-container">
-    <img src="assets/logo/myapp_logo.png" alt="MyApp Logo" />
-  </div>
-</ion-toolbar>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons *ngIf="(showBackButton$ | async)" slot="start">
+      <ion-back-button defaultHref="/tabs/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="(showLogo$ | async)">
+      <div class="logo-container">
+        <img src="assets/logo/myapp_logo.png" alt="MyApp Logo" />
+      </div>
+    </ion-title>
+    <ion-title *ngIf="!(showLogo$ | async)">
+      {{ title$ | async }}
+    </ion-title>
+    <ion-buttons slot="end" *ngIf="(showSaveButton$ | async)">
+      <ion-button (click)="onSave()">Speichern</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>

@@ -40,9 +40,9 @@ export class ContentBoxComponent  implements OnInit {
 
   navigate() {
     if (this.platform.isMobile()) {
-      this.router.navigate(['/tabs/home/details']);
+      this.router.navigateByUrl('/tabs/home/details');
     } else {
-      this.router.navigate(['/home/details']);
+      this.router.navigateByUrl('/home/details');
     }
   }
 }
