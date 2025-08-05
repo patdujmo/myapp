@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MobileHeaderComponent } from './components/header/mobile-header/mobile-header.component';
 import { DesktopHeaderComponent } from './components/header/desktop-header/desktop-header.component';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,7 +15,8 @@ import { DesktopHeaderComponent } from './components/header/desktop-header/deskt
     IonicModule.forRoot({ animated: false }),
     AppRoutingModule,
     MobileHeaderComponent,
-    DesktopHeaderComponent
+    DesktopHeaderComponent,
+    StoreModule.forRoot({}, {})
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy}],
   bootstrap: [AppComponent],
