@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { firstValueFrom } from 'rxjs';
 import { loadEventsFailure, loadEventsSuccess } from 'src/app/store/events/events.actions';
-import { DataServiceService } from '../data-service.service';
+import { DataService } from '../data-service.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class AppInitService {
 
   constructor(
     private store: Store,
-    private dataService: DataServiceService
+    private dataService: DataService
   ) {}
 
   async init(): Promise<void> {

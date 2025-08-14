@@ -1,10 +1,53 @@
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { bootstrapApplication } from '@angular/platform-browser';
+import { provideHttpClient } from '@angular/common/http';
+import { provideRouter, RouteReuseStrategy } from '@angular/router';
+import { provideStore } from '@ngrx/store';
+import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { APP_INITIALIZER, importProvidersFrom } from '@angular/core';
+import { AppInitService } from './app/services/initializer/app-init.service';
+import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { EventsEffects } from './app/store/events/events.effects';
+import { provideEffects } from '@ngrx/effects';
+import { headerReducer } from './app/components/header/store/header.reducers';
+import { eventsReducer } from './app/store/events/events.reducer';
+import { AppComponent } from './app/app.component';
+import { routes } from './app/app.routes';
 
-import { AppModule } from './app/app.module';
-import { defineCustomElements } from '@ionic/pwa-elements/loader';
+export function initializeApp(appInitService: AppInitService) {
+  return () => appInitService.init();
+}
 
-// Call the element loader before the bootstrapModule/bootstrapApplication call
-defineCustomElements(window);
-
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.log(err));
+bootstrapApplication(AppComponent, {
+  providers: [
+    provideHttpClient(),
+    provideRouter(routes),
+    provideStore(
+      {
+        header: headerReducer,
+        events: eventsReducer
+      },
+      {
+        runtimeChecks: {
+          strictStateImmutability: true,
+          strictActionImmutability: true,
+        },
+      }
+    ),
+    provideEffects([EventsEffects]),
+    provideStoreDevtools({
+      maxAge: 25,
+      logOnly: false,
+      autoPause: true,
+    }),
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeApp,
+      deps: [AppInitService],
+      multi: true
+    },
+    importProvidersFrom(
+      IonicModule.forRoot({ animated: false })
+    ),
+  ]
+}).catch(err => console.error(err));

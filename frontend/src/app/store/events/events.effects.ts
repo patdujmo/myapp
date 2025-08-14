@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { loadEvents, loadEventsFailure, loadEventsSuccess } from "./events.actions";
 import { catchError, map, mergeMap, of } from "rxjs";
-import { DataServiceService } from "src/app/services/data-service.service";
+import { DataService } from "src/app/services/data-service.service";
 
 
 @Injectable()
@@ -19,5 +19,5 @@ export class EventsEffects {
     )
   );
 
-  constructor(private actions$: Actions, private dataService: DataServiceService) {}
+  constructor(private actions$: Actions, private dataService: DataService) {}
 }

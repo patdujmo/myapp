@@ -1,8 +1,7 @@
-import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 import { TabsPageComponent } from './components/navigation/tabs-page/tabs-page.component';
 
-export const AppRoutes = {
+const AppRoutes = {
   tabs: 'tabs',
   home: 'home',
   homeBack: 'tabs/home',
@@ -11,7 +10,7 @@ export const AppRoutes = {
   profile: 'profile'
 };
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: AppRoutes.tabs,
     component: TabsPageComponent,
@@ -101,10 +100,3 @@ const routes: Routes = [
   //   loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
   // }
 ];
-@NgModule({
-  imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
-  ],
-  exports: [RouterModule]
-})
-export class AppRoutingModule {}
