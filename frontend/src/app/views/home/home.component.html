@@ -1,6 +1,8 @@
 <app-header-layout></app-header-layout>
 <ion-content>
-  <div class="item-wrapper" *ngFor="let item of getData()">
-    <app-content-box [item]="item"></app-content-box>
+  <div class="item-wrapper">
+    @for (item of eventData$ | async; track item.id) {
+      <app-event-box [eventItem]="item"></app-event-box>
+    }
   </div>
 </ion-content>

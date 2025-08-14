@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { TabsPageComponent } from './components/navigation/tabs-page/tabs-page.component';
-import { DesktopLayoutComponent } from './components/navigation/desktop-layout/desktop-layout.component';
 
 export const AppRoutes = {
   tabs: 'tabs',
   home: 'home',
   homeBack: 'tabs/home',
-  homeDetails: 'home/details',
+  homeDetails: 'home/details/:id',
   chat: 'chat',
   profile: 'profile'
 };
@@ -72,7 +71,6 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: DesktopLayoutComponent,
     children: [
       {
         path: AppRoutes.home,

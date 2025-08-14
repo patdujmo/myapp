@@ -1,0 +1,21 @@
+<ion-card (click)="navigate(eventItem.id)" class="event-box">
+  <div class="event-content">
+    <div class="event-image">
+      <img [src]="eventItem.imageUrl" alt="{{ eventItem.imageUrl }}" />
+    </div>
+    <div class="event-info">
+      <div class="event-title">
+        <h3>{{ eventItem.title }}</h3>
+      </div>
+      <div class="date">
+        <ion-icon name="calendar-outline"></ion-icon>
+        <span class="date-item">{{ eventItem.date | date: 'dd.MM.yyyy' }}</span>
+      </div>
+      <div class="description">{{ eventItem.description }}</div>
+      <div class="location">
+        <ion-icon name="location-outline"></ion-icon>
+        <span class="location-item">{{ eventItem.location }} • {{ eventItem.distanceKm }} km</span>
+      </div>
+    </div>
+  </div>
+</ion-card>

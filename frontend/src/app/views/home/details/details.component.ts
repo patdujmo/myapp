@@ -1,6 +1,11 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { HeaderLayoutComponent } from 'src/app/components/header/header-layout/header-layout.component';
+import { EventData } from 'src/app/store/events/events.model';
+import { selectEventById } from 'src/app/store/events/events.selector';
 
 @Component({
   selector: 'app-details',
@@ -15,8 +20,18 @@ import { HeaderLayoutComponent } from 'src/app/components/header/header-layout/h
 })
 export class DetailsComponent  implements OnInit {
 
-  constructor() { }
+  eventData$!: Observable<EventData | null>;
 
-  ngOnInit() {}
+  constructor(
+    private route: ActivatedRoute,
+    private store: Store
+  ) { }
+
+  ngOnInit() {
+    const id = this.route.snapshot.paramMap.get('id')!;
+    this.store.select(selectEventById(id)).subscribe((test) => {
+      console.log(test);
+    });
+  }
 
 }

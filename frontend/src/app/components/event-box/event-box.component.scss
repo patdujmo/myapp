@@ -1,0 +1,70 @@
+.event-box {
+  --ion-background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+  margin: 12px 0;
+  overflow: hidden;
+
+  .event-content {
+    display: flex;
+    height: 150px;
+  }
+
+  .event-image {
+    flex-shrink: 0;
+    width: auto;
+    max-width: 33vw;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  .event-info {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: 10px;
+
+    .event-title {
+      h3 {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin: 0 0 8px 0;
+      }
+    }
+
+    .date {
+      margin-bottom: 5px;
+      .date-item {
+        margin-left: 5px;
+      }
+    }
+
+    .description {
+      flex-grow: 1;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      text-overflow: ellipsis;
+      line-height: 1.2em;
+      max-height: calc(1.2em * 3);
+      margin-bottom: 5px;
+    }
+
+    .location {
+      display: flex;
+      align-items: center;
+      .location-item {
+        margin-left: 5px;
+      }
+    }
+  }
+}
+

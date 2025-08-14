@@ -2,9 +2,12 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { ContentBoxComponent } from 'src/app/components/content-box/content-box.component';
-import { DataServiceService } from 'src/app/services/data-service.service';
 import { HeaderLayoutComponent } from 'src/app/components/header/header-layout/header-layout.component';
+import { EventBoxComponent } from 'src/app/components/event-box/event-box.component';
+import { Store } from '@ngrx/store';
+import { selectAllEvents } from 'src/app/store/events/events.selector';
+import { Observable } from 'rxjs';
+import { EventData } from 'src/app/store/events/events.model';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +17,7 @@ import { HeaderLayoutComponent } from 'src/app/components/header/header-layout/h
     IonicModule,
     CommonModule,
     FormsModule,
-    ContentBoxComponent,
+    EventBoxComponent,
     HeaderLayoutComponent
 ],
   standalone: true,
@@ -22,14 +25,14 @@ import { HeaderLayoutComponent } from 'src/app/components/header/header-layout/h
 })
 export class HomeComponent  implements OnInit {
 
+  eventData$!: Observable<EventData[]>
+
   constructor(
-    private readonly dataService: DataServiceService
+    private readonly store: Store
   ) { }
 
-  ngOnInit() {}
-
-  getData() {
-    return this.dataService.getDataMockCar();
+  ngOnInit() {
+    this.eventData$ = this.store.select(selectAllEvents);
   }
 
 }
