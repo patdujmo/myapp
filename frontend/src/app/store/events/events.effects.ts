@@ -11,7 +11,7 @@ export class EventsEffects {
     this.actions$.pipe(
       ofType(loadEvents),
       mergeMap(() => {
-        return this.dataService.getEventObservable().pipe(
+        return this.dataService.getAllEvents('9134').pipe(
           map(events => loadEventsSuccess({events})),
           catchError(error => of(loadEventsFailure({ error })))
         )

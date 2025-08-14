@@ -16,7 +16,7 @@ export class AppInitService {
 
   async init(): Promise<void> {
     try {
-      const events = await firstValueFrom(this.dataService.getEventObservable());
+      const events = await firstValueFrom(this.dataService.getAllEvents('9134'));
       this.store.dispatch(loadEventsSuccess({ events }));
     } catch (error) {
       this.store.dispatch(loadEventsFailure({ error }));
