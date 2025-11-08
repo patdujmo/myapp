@@ -1,0 +1,9 @@
+<app-header-layout></app-header-layout>
+
+<ion-content [fullscreen]="true">
+  <div class="item-wrapper">
+    @for(favorite of favorites$ | async; track favorite) {
+      <app-event-box [eventItem]="favorite"></app-event-box>
+    }
+  </div>
+</ion-content>

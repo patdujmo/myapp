@@ -2,10 +2,24 @@
   <div class="event-content">
     <div class="event-image">
       <img [src]="eventItem.imageUrl" alt="{{ eventItem.imageUrl }}" />
+      @let favorite = isFavorite$ | async;
+      <div class="event-favorite">
+        <ion-button
+          fill="clear"
+          class="favorite-btn"
+          (click)="toggleFavorite(eventItem, favorite, $event)"
+        >
+        <ion-icon
+          [name]="favorite ? 'heart' : 'heart-outline'"
+        ></ion-icon>
+        </ion-button>
+      </div>
     </div>
     <div class="event-info">
-      <div class="event-title">
-        <h3>{{ eventItem.title }}</h3>
+      <div class="event-header">
+        <div class="event-title">
+          <h3>{{ eventItem.title }}</h3>
+        </div> 
       </div>
       <div class="date">
         <ion-icon name="calendar-outline"></ion-icon>

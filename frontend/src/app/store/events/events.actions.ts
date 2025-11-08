@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { EventData } from './events.model';
+import { EventData } from '../models/events';
 
 export const loadEvents = createAction('[Event] Load Events');
 export const loadEventsSuccess = createAction('[Event] Load Events Success', props<{ events: EventData[] }>());

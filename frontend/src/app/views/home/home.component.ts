@@ -5,9 +5,9 @@ import { IonicModule } from '@ionic/angular';
 import { HeaderLayoutComponent } from 'src/app/components/header/header-layout/header-layout.component';
 import { EventBoxComponent } from 'src/app/components/event-box/event-box.component';
 import { Store } from '@ngrx/store';
-import { selectAllEvents } from 'src/app/store/events/events.selector';
+import { selectEventsError, selectEventsLoading, selectEventsWithFavorites } from 'src/app/store/events/events.selector';
 import { Observable } from 'rxjs';
-import { EventData } from 'src/app/store/events/events.model';
+import { EventData } from 'src/app/store/models/events';
 
 @Component({
   selector: 'app-home',
@@ -25,14 +25,18 @@ import { EventData } from 'src/app/store/events/events.model';
 })
 export class HomeComponent  implements OnInit {
 
-  eventData$!: Observable<EventData[]>
+  eventData$!: Observable<EventData[]>;
+  loading$!: Observable<boolean>;
+  error$!: Observable<boolean>;
 
   constructor(
     private readonly store: Store
   ) { }
 
   ngOnInit() {
-    this.eventData$ = this.store.select(selectAllEvents);
+    this.eventData$ = this.store.select(selectEventsWithFavorites)
+    this.loading$ = this.store.select(selectEventsLoading);
+    this.error$ = this.store.select(selectEventsError);
   }
 
 }

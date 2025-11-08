@@ -1,10 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { HeaderLayoutComponent } from 'src/app/components/header/header-layout/header-layout.component';
-import { EventData } from 'src/app/store/events/events.model';
+import { EventData } from 'src/app/store/models/events';
 import { selectEventById } from 'src/app/store/events/events.selector';
 
 @Component({
@@ -13,14 +14,15 @@ import { selectEventById } from 'src/app/store/events/events.selector';
   styleUrls: ['./details.component.scss'],
   imports: [
     IonicModule,
-    HeaderLayoutComponent
+    HeaderLayoutComponent,
+    CommonModule
   ],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DetailsComponent  implements OnInit {
 
-  eventData$!: Observable<EventData | null>;
+  eventItem$!: Observable<EventData | null>;
 
   constructor(
     private route: ActivatedRoute,
@@ -29,9 +31,7 @@ export class DetailsComponent  implements OnInit {
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id')!;
-    this.store.select(selectEventById(id)).subscribe((test) => {
-      console.log(test);
-    });
+    this.eventItem$ = this.store.select(selectEventById(id));
   }
 
 }

@@ -1,4 +1,42 @@
-<app-header-layout></app-header-layout>
-
 <ion-content [fullscreen]="true">
+  <ion-card *ngIf="user$ | async as user">
+    <ion-card-header class="ion-text-center">
+      <ion-avatar class="profile-avatar">
+        <img [src]="user.avatarUrl" alt="{{ user.firstName }} {{ user.lastName }}" />
+      </ion-avatar>
+      <div class="profile-title">
+        <ion-card-title>{{ user.firstName }} {{ user.lastName }}</ion-card-title>
+      </div>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list lines="none">
+        <ion-item>
+          <ion-label>
+            <strong>Geburtsdatum:</strong>
+            <p>{{ user.birthDate | date: 'longDate' }}</p>
+          </ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>
+            <strong>Telefon:</strong>
+            <p>{{ user.phone }}</p>
+          </ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>
+            <strong>E-Mail:</strong>
+            <p>{{ user.email }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+
+      <div class="description-block">
+        <h3>Über mich</h3>
+        <p>{{ user.description }}</p>
+      </div>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

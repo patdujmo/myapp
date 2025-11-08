@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { EventData } from '../store/events/events.model';
+import { Observable } from 'rxjs';
+import { EventData } from '../store/models/events';
 import { HttpClient } from '@angular/common/http';
+import { UserData } from '../store/models/users';
 
 @Injectable({
   providedIn: 'root'
@@ -12,28 +13,26 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  // New Endpoints
-  // Alle Events mit Favoriten für einen User
+  getUserProfile(userId: string): Observable<UserData> {
+    return this.http.get<UserData>(`${this.apiUrl}/users/${userId}`);
+  }
+
   getAllEvents(userId: string): Observable<EventData[]> {
     return this.http.get<EventData[]>(`${this.apiUrl}/events?userId=${userId}`);
   }
 
-  // Einzelnes Event nach ID
   getEventById(eventId: string): Observable<EventData> {
     return this.http.get<EventData>(`${this.apiUrl}/events/${eventId}`);
   }
 
-  // Favorit hinzufügen
   addFavorite(userId: string, eventId: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/favorites`, { userId, eventId });
+    return this.http.post(`${this.apiUrl}/favorites/users/${userId}/${eventId}`, {});
   }
 
-  // Favorit entfernen
   removeFavorite(userId: string, eventId: string): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/favorites`, { body: { userId, eventId } });
+    return this.http.delete(`${this.apiUrl}/favorites/users/${userId}/${eventId}`, {});
   }
 
-  // Favoriten eines Users
   getUserFavorites(userId: string): Observable<EventData[]> {
     return this.http.get<EventData[]>(`${this.apiUrl}/users/${userId}/favorites`);
   }

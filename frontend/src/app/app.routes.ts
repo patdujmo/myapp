@@ -7,7 +7,8 @@ const AppRoutes = {
   homeBack: 'tabs/home',
   homeDetails: 'home/details/:id',
   chat: 'chat',
-  profile: 'profile'
+  profile: 'profile',
+  myevents: 'myevents',
 };
 
 export const routes: Routes = [
@@ -51,6 +52,17 @@ export const routes: Routes = [
         }
       },
       {
+        path: AppRoutes.myevents,
+        loadComponent: () => import('./views/my-events/my-events.component').then(m => m.MyEventsComponent),
+        data: {
+          header: {
+            showBackButton: false,
+            showSaveButton: false,
+            showLogo: true
+          }
+        }
+      },
+      {
         path: AppRoutes.profile,
         loadComponent: () => import('./views/profile/profile.component').then(m => m.ProfileComponent),
         data: {
@@ -84,6 +96,10 @@ export const routes: Routes = [
         loadComponent: () => import('./views/chat/chat.component').then(m => m.ChatComponent)
       },
       {
+        path: AppRoutes.myevents,
+        loadComponent: () => import('./views/my-events/my-events.component').then(m => m.MyEventsComponent)
+      },
+      {
         path: AppRoutes.profile,
         loadComponent: () => import('./views/profile/profile.component').then(m => m.ProfileComponent)
       },
@@ -94,7 +110,7 @@ export const routes: Routes = [
       }
     ]
   },
-  // Beispiel für eine Seite außerhalb des Layouts (z.B. Login, Onboarding)
+  // Example for a page that is out of the layouts (z.B. Login, Onboarding)
   // {
   //   path: 'login',
   //   loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)

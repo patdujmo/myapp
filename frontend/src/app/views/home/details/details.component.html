@@ -1,5 +1,32 @@
 <app-header-layout></app-header-layout>
 
 <ion-content class="ion-padding">
-  <p>Hier sind die Details!</p>
+  <ion-card *ngIf="eventItem$ | async as eventItem">
+    <div class="event-image">
+      <img [src]="eventItem.imageUrl" alt="{{ eventItem.imageUrl }}" />
+    </div>
+  <ion-card-header>
+    <ion-card-title>{{ eventItem.title }}</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    <div class="event-description">
+      <p>{{ eventItem.description }}</p>
+    </div>
+    <ion-item>
+      <ion-label>Ort:</ion-label>
+      <ion-badge color="primary">{{ eventItem.location }}</ion-badge>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Distanz:</ion-label>
+      <ion-badge color="secondary">{{ eventItem.distanceKm }} km</ion-badge>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Datum:</ion-label>
+      <ion-badge color="tertiary">{{ eventItem.date | date:'longDate' }}</ion-badge>
+    </ion-item>
+  </ion-card-content>
+  </ion-card>
 </ion-content>

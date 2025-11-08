@@ -26,6 +26,7 @@ export class AppComponent implements OnInit{
 
   ngOnInit() {
     this.initRouting();
+    this.headerService.initHeader();
   }
 
   initRouting() {

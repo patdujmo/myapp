@@ -1,7 +1,10 @@
+import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
-import { DesktopHeaderComponent } from 'src/app/components/header/desktop-header/desktop-header.component';
-import { HeaderLayoutComponent } from 'src/app/components/header/header-layout/header-layout.component';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { UserData } from 'src/app/store/models/users';
+import { selectCurrentUser } from 'src/app/store/users/users.selector';
 
 @Component({
   selector: 'app-profile',
@@ -9,15 +12,19 @@ import { HeaderLayoutComponent } from 'src/app/components/header/header-layout/h
   styleUrls: ['./profile.component.scss'],
   imports: [
     IonicModule,
-    HeaderLayoutComponent
+    CommonModule
   ],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProfileComponent  implements OnInit {
 
-  constructor() { }
+  user$!: Observable<UserData | null>;
 
-  ngOnInit() {}
+  constructor(private readonly store: Store) { }
+
+  ngOnInit() {
+    this.user$ = this.store.select(selectCurrentUser);
+  }
 
 }

@@ -12,6 +12,10 @@ import { headerReducer } from './app/components/header/store/header.reducers';
 import { eventsReducer } from './app/store/events/events.reducer';
 import { AppComponent } from './app/app.component';
 import { routes } from './app/app.routes';
+import { usersReducer } from './app/store/users/users.reducer';
+import { favoritesReducer } from './app/store/favorites/favorites.reducer';
+import { FavoritesEffects } from './app/store/favorites/favorites.effects';
+import { UsersEffects } from './app/store/users/users.effects';
 
 export function initializeApp(appInitService: AppInitService) {
   return () => appInitService.init();
@@ -24,7 +28,9 @@ bootstrapApplication(AppComponent, {
     provideStore(
       {
         header: headerReducer,
-        events: eventsReducer
+        events: eventsReducer,
+        user: usersReducer,
+        favorites: favoritesReducer
       },
       {
         runtimeChecks: {
@@ -33,7 +39,7 @@ bootstrapApplication(AppComponent, {
         },
       }
     ),
-    provideEffects([EventsEffects]),
+    provideEffects([EventsEffects, FavoritesEffects, UsersEffects]),
     provideStoreDevtools({
       maxAge: 25,
       logOnly: false,

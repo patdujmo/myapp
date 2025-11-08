@@ -6,4 +6,5 @@ export interface EventData {
   location: string;
   distanceKm: number;
   date: Date;
+  isFavorite?: boolean;
 }

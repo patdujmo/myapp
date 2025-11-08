@@ -14,6 +14,9 @@ export class HeaderService {
     private activatedRoute: ActivatedRoute,
     private store: Store
   ) {
+  }
+
+  initHeader() {
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(() => {
@@ -23,11 +26,10 @@ export class HeaderService {
         if (data) {
           this.store.dispatch(setHeader(data));
         } else {
-          // Fallback
           this.store.dispatch(setHeader({
             showBackButton: false,
             showSaveButton: false,
-            showLogo: true,
+            showLogo: true
           }));
         }
       });
