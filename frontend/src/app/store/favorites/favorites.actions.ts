@@ -15,7 +15,7 @@ export const loadFavoritesFailure = createAction(
 
 export const addFavorite = createAction(
   '[Favorites] Add Favorite',
-  props<{ userId: string, event: EventData }>()
+  props<{ event: EventData }>()
 );
 
 export const addFavoriteSuccess = createAction(
@@ -30,7 +30,7 @@ export const addFavoriteFailure = createAction(
 
 export const removeFavorite = createAction(
   '[Favorites] Remove Favorite',
-  props<{ userId: string, eventId: string }>()
+  props<{ eventId: string }>()
 );
 
 export const removeFavoriteSuccess = createAction(

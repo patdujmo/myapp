@@ -11,7 +11,9 @@ export class DataService {
 
   private apiUrl = 'http://localhost:3000';
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private readonly http: HttpClient
+  ) { }
 
   getUserProfile(userId: string): Observable<UserData> {
     return this.http.get<UserData>(`${this.apiUrl}/users/${userId}`);

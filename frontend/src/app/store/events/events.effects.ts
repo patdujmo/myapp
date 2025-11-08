@@ -12,10 +12,9 @@ export class EventsEffects {
   load$ = createEffect(() =>
     this.actions$.pipe(
       ofType(loadEvents),
-      withLatestFrom(this.store.select(selectCurrentUserId)),
+      switchMap(() => this.store.select(selectCurrentUserId)),
       switchMap((currentUserId) => {
-        console.log(currentUserId);
-        return this.dataService.getAllEvents('9134').pipe(
+        return this.dataService.getAllEvents(currentUserId).pipe(
           map(events => loadEventsSuccess({events})),
           catchError(error => of(loadEventsFailure({ error })))
         )

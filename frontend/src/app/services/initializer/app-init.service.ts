@@ -19,9 +19,10 @@ export class AppInitService {
 
   async init(): Promise<void> {
     try {
-      const events = await firstValueFrom(this.dataService.getAllEvents('9134'));
-      const user = await firstValueFrom(this.dataService.getUserProfile('9134'));
-      const favorites = await firstValueFrom(this.dataService.getUserFavorites('9134'));
+      const currentUser = '9134';
+      const events = await firstValueFrom(this.dataService.getAllEvents(currentUser));
+      const user = await firstValueFrom(this.dataService.getUserProfile(currentUser));
+      const favorites = await firstValueFrom(this.dataService.getUserFavorites(currentUser));
       this.store.dispatch(setHeader({
         showBackButton: false,
         showSaveButton: false,

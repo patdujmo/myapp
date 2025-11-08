@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { DataService } from 'src/app/services/data-service.service';
-import { catchError, map, mergeMap, of } from 'rxjs';
+import { catchError, map, mergeMap, of, switchMap, withLatestFrom } from 'rxjs';
 import { addFavorite, addFavoriteSuccess, loadFavorites, loadFavoritesFailure, loadFavoritesSuccess, removeFavorite, removeFavoriteSuccess } from './favorites.actions';
 import { Store } from '@ngrx/store';
+import { selectCurrentUserId } from '../users/users.selector';
 
 @Injectable()
 export class FavoritesEffects {
   load$ = createEffect(() => 
     this.actions$.pipe(
       ofType(loadFavorites),
-      mergeMap(() => {
-        return this.dataService.getUserFavorites('9134').pipe(
+      switchMap(() => this.store.select(selectCurrentUserId)),
+      mergeMap((currentUserId) => {
+        return this.dataService.getUserFavorites(currentUserId).pipe(
           map(favorites => loadFavoritesSuccess({ favorites })),
           catchError(error => of(loadFavoritesFailure({ error })))
         )
@@ -21,7 +23,8 @@ export class FavoritesEffects {
   addFavorite$ = createEffect(() =>
     this.actions$.pipe(
       ofType(addFavorite),
-      mergeMap(({ userId, event }) => {
+      withLatestFrom(this.store.select(selectCurrentUserId)),
+      mergeMap(([{ event }, userId]) => {
         this.store.dispatch(addFavoriteSuccess({ event }));
         return this.dataService.addFavorite(userId, event.id);
       }
@@ -33,7 +36,8 @@ export class FavoritesEffects {
   removeFavorite$ = createEffect(() =>
     this.actions$.pipe(
       ofType(removeFavorite),
-      mergeMap(({ userId, eventId }) => {
+      withLatestFrom(this.store.select(selectCurrentUserId)),
+      mergeMap(([{ eventId }, userId]) => {
         this.store.dispatch(removeFavoriteSuccess({eventId}));
         return this.dataService.removeFavorite(userId, eventId);
       }

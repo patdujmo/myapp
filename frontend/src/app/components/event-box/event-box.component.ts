@@ -31,8 +31,8 @@ export interface EventItem {
 export class EventBoxComponent  implements OnInit, OnDestroy {
 
   private readonly destroy$ = new Subject<void>();
-  @Input() eventItem!: EventItem;
-  isFavorite$!: Observable<boolean>;
+  @Input() eventItem: EventItem;
+  isFavorite$: Observable<boolean>;
 
   constructor(
     private readonly router: Router,
@@ -55,11 +55,10 @@ export class EventBoxComponent  implements OnInit, OnDestroy {
   toggleFavorite(eventData: EventData, isFavorite: boolean | null, event: MouseEvent) {
     event.stopPropagation(); // verhindert das Hochpropagieren des Klicks
     event.preventDefault();  // verhindert Standardverhalten (optional)
-    const userId = '9134';
     if (isFavorite) {
-      this.store.dispatch(removeFavorite({userId, eventId: eventData.id}));
+      this.store.dispatch(removeFavorite({ eventId: eventData.id }));
     } else {
-      this.store.dispatch(addFavorite({userId, event: eventData}));
+      this.store.dispatch(addFavorite({ event: eventData }));
     }
   }
   ngOnDestroy(): void {
